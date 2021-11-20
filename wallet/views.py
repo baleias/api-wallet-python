@@ -1,14 +1,19 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework import generics
+
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
 
-def index(request):
-    return HttpResponse('<h1>Hello, World<h1>')
+from wallet.models import Customer, Order, Cashback
+from wallet.serialiazers import CustomerSerializer, OrderSerializer, CashbackSerializer
 
-@api_view(['GET', 'POST'])
-def hello_world(request):
-    obj = {'message': "got some data!", 'data': request.data}
-    if request.method == 'POST':
-        return Response({'message': obj['message'], 'data': obj['data']})
-    return Response({'message': 'Hello again, World\'s!'})
+class CustomerList(generics.ListCreateAPIView):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+class OrderList(generics.ListCreateAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+class CashbackList(generics.ListCreateAPIView):
+    queryset = Cashback.objects.all()
+    serializer_class = CashbackSerializer
