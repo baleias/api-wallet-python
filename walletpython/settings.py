@@ -19,14 +19,15 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'wallet',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'rest_framework'
+    'rest_framework',
+    'cpf_field', #CPFvalidation
+    'wallet',
 ]
 
 MIDDLEWARE = [
@@ -66,7 +67,7 @@ WSGI_APPLICATION = 'walletpython.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'wallet_cashback',
+        'NAME': 'wallet',
         'USER': 'postgres',
         'PASSWORD': '140124',
         'HOST': 'localhost'
